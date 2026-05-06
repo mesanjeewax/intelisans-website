@@ -1,13 +1,495 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelisan — Intelligent Software Solutions</title>
+    <meta name="description" content="Intelisan builds intelligent, AI-powered software that transforms how people manage their lives. Discover BudgetBuddy and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body class="home-page">
+    <!-- Animated Mesh Background -->
+    <div class="hp-mesh-bg">
+        <div class="mesh-orb hp-orb-1"></div>
+        <div class="mesh-orb hp-orb-2"></div>
+        <div class="mesh-orb hp-orb-3"></div>
+        <div class="mesh-orb hp-orb-4"></div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Intelisan</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#vision" class="nav-link">Vision</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hp-hero" id="hero">
+        <div class="hp-hero-inner">
+            <div class="hp-hero-content">
+                <div class="hp-hero-badge animate-in">
+                    <span class="badge-pulse"></span>
+                    <span>AI-Powered Software Studio</span>
+                    <span class="badge-divider">|</span>
+                   
+                </div>
+                <h1 class="hp-hero-title animate-in">
+                    <span class="title-line">We Build Software</span>
+                    <span class="title-line">That <span class="title-gradient">Thinks</span></span>
+                    <span class="title-line"><span class="title-gradient-ai">With You.</span></span>
+                </h1>
+                <p class="hp-hero-desc animate-in">
+                    At Intelisan, we craft AI-powered applications that don't just work — they understand. 
+                    Blending on-device machine learning with premium design to solve real-world problems.
+                </p>
+                <div class="hp-hero-actions animate-in">
+                    <a href="#products" class="hp-btn-primary">
+                        <span>Explore Our Products</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <span class="btn-shimmer"></span>
+                    </a>
+                    <a href="#about" class="hp-btn-ghost">
+                        <span>Our Story</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </a>
+                </div>
+                <div class="hp-hero-metrics animate-in">
+                    <div class="hp-metric">
+                        <span class="hp-metric-value" data-target="2">0</span>
+                        <span class="hp-metric-label">Products Live</span>
+                    </div>
+                    <div class="hp-metric-sep"></div>
+                    <div class="hp-metric">
+                        <span class="hp-metric-value">100%</span>
+                        <span class="hp-metric-label">On-Device AI</span>
+                    </div>
+                    <div class="hp-metric-sep"></div>
+                    <div class="hp-metric">
+                        <span class="hp-metric-value">0</span>
+                        <span class="hp-metric-label">Data Sent to Cloud</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual — Interactive Dashboard -->
+            <div class="hp-hero-visual animate-in">
+                <div class="hero-dashboard">
+                    <!-- Floating glow orbs behind -->
+                    <div class="hd-glow hd-glow-1"></div>
+                    <div class="hd-glow hd-glow-2"></div>
+
+                    <!-- Main dashboard card -->
+                    <div class="hd-card">
+                        <div class="hd-header">
+                            <div class="hd-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="hd-title">AI Dashboard</span>
+                            <div class="hd-status-dot"></div>
+                        </div>
+
+                        <!-- Balance row -->
+                        <div class="hd-balance-row">
+                            <div class="hd-balance-info">
+                                <span class="hd-label">Net Worth</span>
+                                <span class="hd-amount">$124,850</span>
+                                <span class="hd-change positive">+12.4% ↑</span>
+                            </div>
+                        </div>
+
+                        <!-- Animated chart -->
+                        <div class="hd-chart">
+                            <svg viewBox="0 0 300 80" preserveAspectRatio="none" class="hd-chart-svg">
+                                <defs>
+                                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="rgba(197,165,90,0.3)"/>
+                                        <stop offset="100%" stop-color="rgba(197,165,90,0)"/>
+                                    </linearGradient>
+                                    <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#C5A55A"/>
+                                        <stop offset="100%" stop-color="#E8D5A3"/>
+                                    </linearGradient>
+                                </defs>
+                                <path class="hd-chart-area" d="M0,60 Q30,55 60,45 T120,35 T180,25 T240,30 T300,15 L300,80 L0,80 Z" fill="url(#chartGrad)"/>
+                                <path class="hd-chart-line" d="M0,60 Q30,55 60,45 T120,35 T180,25 T240,30 T300,15" fill="none" stroke="url(#lineGrad)" stroke-width="2.5"/>
+                                <circle class="hd-chart-dot" cx="300" cy="15" r="4" fill="#E8D5A3"/>
+                            </svg>
+                        </div>
+
+                        <!-- Stats grid -->
+                        <div class="hd-stats">
+                            <div class="hd-stat">
+                                <span class="hd-stat-icon">📊</span>
+                                <span class="hd-stat-val">$4,200</span>
+                                <span class="hd-stat-lbl">Monthly Budget</span>
+                            </div>
+                            <div class="hd-stat">
+                                <span class="hd-stat-icon">🎯</span>
+                                <span class="hd-stat-val">68%</span>
+                                <span class="hd-stat-lbl">Goals Hit</span>
+                            </div>
+                            <div class="hd-stat">
+                                <span class="hd-stat-icon">🤖</span>
+                                <span class="hd-stat-val">AI</span>
+                                <span class="hd-stat-lbl">On-Device</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating notification cards -->
+                    <div class="hd-float-card hd-float-1">
+                        <span class="hd-fc-icon">⚡</span>
+                        <div class="hd-fc-text">
+                            <strong>Smart Alert</strong>
+                            <span>Spending 23% less this week</span>
+                        </div>
+                    </div>
+
+                    <div class="hd-float-card hd-float-2">
+                        <span class="hd-fc-icon">🔒</span>
+                        <div class="hd-fc-text">
+                            <strong>100% Private</strong>
+                            <span>All data stays on device</span>
+                        </div>
+                    </div>
+
+                    <div class="hd-float-card hd-float-3">
+                        <span class="hd-fc-icon">💡</span>
+                        <div class="hd-fc-text">
+                            <strong>AI Insight</strong>
+                            <span>Save $340 this month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hp-scroll-hint">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee Trust Bar -->
+    <section class="hp-marquee reveal">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span class="mq-item">⚡ On-Device AI</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🔒 Zero Cloud Data</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🌍 Multi-Currency</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🧠 Machine Learning</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">📱 Cross-Platform</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🎯 Problem-First Design</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">⚡ On-Device AI</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🔒 Zero Cloud Data</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🌍 Multi-Currency</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🧠 Machine Learning</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">📱 Cross-Platform</span>
+                <span class="mq-dot"></span>
+                <span class="mq-item">🎯 Problem-First Design</span>
+                <span class="mq-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section — Staggered Cards -->
+    <section class="hp-section" id="about">
+        <div class="container">
+            <div class="hp-section-header reveal">
+                <span class="hp-tag">Who We Are</span>
+                <h2 class="hp-section-title">Intelligence Meets<br><span class="title-gradient">Innovation</span></h2>
+                <p class="hp-section-desc">We don't build technology for technology's sake. We find real friction in people's lives and eliminate it with elegant, intelligent software.</p>
+            </div>
+
+            <div class="hp-about-grid">
+                <div class="hp-about-card reveal">
+                    <div class="hac-icon-wrap hac-ai">
+                        <span>🧠</span>
+                    </div>
+                    <h3>AI-First Philosophy</h3>
+                    <p>Every product has intelligence woven into its DNA. On-device AI delivers smart, private, and lightning-fast experiences without internet dependency.</p>
+                    <div class="hac-accent-line"></div>
+                </div>
+                <div class="hp-about-card reveal">
+                    <div class="hac-icon-wrap hac-target">
+                        <span>🎯</span>
+                    </div>
+                    <h3>Problem-Obsessed</h3>
+                    <p>We identify real pain points and build solutions so intuitive they feel invisible. No bloat, no unnecessary complexity — just pure utility.</p>
+                    <div class="hac-accent-line"></div>
+                </div>
+                <div class="hp-about-card reveal">
+                    <div class="hac-icon-wrap hac-privacy">
+                        <span>🔒</span>
+                    </div>
+                    <h3>Privacy by Design</h3>
+                    <p>Your data stays on your device — always. No cloud processing, no data harvesting. We prove that AI can be powerful without being invasive.</p>
+                    <div class="hac-accent-line"></div>
+                </div>
+                <div class="hp-about-card reveal">
+                    <div class="hac-icon-wrap hac-global">
+                        <span>🌍</span>
+                    </div>
+                    <h3>Global, Yet Local</h3>
+                    <p>Built for the world, tailored for local markets. Multi-currency, region-aware stores, and culturally intelligent — our products adapt to you.</p>
+                    <div class="hac-accent-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section — Premium Showcase -->
+    <section class="hp-section hp-products-section" id="products">
+        <div class="container">
+            <div class="hp-section-header reveal">
+                <span class="hp-tag">Our Products</span>
+                <h2 class="hp-section-title">What We're<br><span class="title-gradient">Building</span></h2>
+                <p class="hp-section-desc">Intelligent applications designed around real human needs. Each product is a step toward our vision of software that truly understands.</p>
+            </div>
+
+            <!-- Featured Product — BudgetBuddy -->
+            <div class="hp-product-featured reveal">
+                <div class="hpf-glow"></div>
+                <div class="hpf-content">
+                    <div class="hpf-status">
+                        <span class="hpf-live-dot"></span>
+                        <span>Live — Flagship Product</span>
+                    </div>
+                    <h3 class="hpf-name">BudgetBuddy</h3>
+                    <p class="hpf-tagline">Your AI-Powered Personal Finance Companion</p>
+                    <p class="hpf-desc">Auto-tracks transactions from SMS, sets intelligent budgets using the 50/30/20 rule, manages savings goals, and provides AI-powered spending insights — all running 100% on your device.</p>
+                    <div class="hpf-features">
+                        <span>SMS Auto-Tracking</span>
+                        <span>AI Categorization</span>
+                        <span>Budget Goals</span>
+                        <span>Savings Planner</span>
+                        <span>Multi-Currency</span>
+                    </div>
+                    <a href="budgetbuddy.html" class="hp-btn-primary hpf-btn">
+                        <span>Learn More</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <span class="btn-shimmer"></span>
+                    </a>
+                </div>
+                <div class="hpf-visual">
+                    <div class="hpf-phone">
+                        <div class="hpf-phone-notch"></div>
+                        <div class="hpf-phone-screen">
+                            <div class="hpf-mock-header">
+                                <span class="hpf-greeting">Good morning 👋</span>
+                                <span class="hpf-balance">$12,450.00</span>
+                            </div>
+                            <div class="hpf-mock-chart">
+                                <div class="hpf-bar" style="--h:35%"></div>
+                                <div class="hpf-bar" style="--h:55%"></div>
+                                <div class="hpf-bar" style="--h:45%"></div>
+                                <div class="hpf-bar hpf-bar-accent" style="--h:75%"></div>
+                                <div class="hpf-bar" style="--h:60%"></div>
+                                <div class="hpf-bar" style="--h:40%"></div>
+                                <div class="hpf-bar" style="--h:50%"></div>
+                            </div>
+                            <div class="hpf-mock-tx">
+                                <span class="tx-emoji">🛒</span>
+                                <span class="tx-det"><strong>Groceries</strong><br><small>Auto-detected</small></span>
+                                <span class="tx-amt">-$84.50</span>
+                            </div>
+                            <div class="hpf-mock-tx">
+                                <span class="tx-emoji">⚡</span>
+                                <span class="tx-det"><strong>Electricity</strong><br><small>Commitment</small></span>
+                                <span class="tx-amt">-$120.00</span>
+                            </div>
+                            <div class="hpf-mock-ai">
+                                <span>🤖</span>
+                                <span>You saved 12% more this month!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Products Grid -->
+            <div class="hp-products-grid">
+                <div class="hp-product-card reveal" onclick="window.location='promobuddy.html'" style="cursor:pointer">
+                    <div class="hpc-badge hpc-badge-live">Live</div>
+                    <div class="hpc-icon">🏷️</div>
+                    <h4>PromoBuddy</h4>
+                    <p>Auto-detect promotions, find nearby deals, and match offers to your spending habits. Save effortlessly.</p>
+                    <div class="hpc-arrow">→</div>
+                </div>
+                <div class="hp-product-card reveal">
+                    <div class="hpc-badge">Coming Soon</div>
+                    <div class="hpc-icon">📈</div>
+                    <h4>InvestIQ</h4>
+                    <p>AI-driven investment portfolio analysis and recommendations tailored to your risk profile and goals.</p>
+                    <div class="hpc-arrow">→</div>
+                </div>
+                <div class="hp-product-card reveal">
+                    <div class="hpc-badge">Coming Soon</div>
+                    <div class="hpc-icon">🏠</div>
+                    <h4>PropertyPulse</h4>
+                    <p>Smart property valuation, rental yield analysis, and market trend insights powered by local data.</p>
+                    <div class="hpc-arrow">→</div>
+                </div>
+                <div class="hp-product-card reveal">
+                    <div class="hpc-badge">Coming Soon</div>
+                    <div class="hpc-icon">💼</div>
+                    <h4>FreelanceFlow</h4>
+                    <p>Automated invoicing, time tracking, and income management built for independent professionals.</p>
+                    <div class="hpc-arrow">→</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section — Immersive -->
+    <section class="hp-section hp-vision-section" id="vision">
+        <div class="container">
+            <div class="hp-vision-card reveal">
+                <div class="hv-card-glow"></div>
+                <div class="hv-content">
+                    <span class="hp-tag">Our Vision</span>
+                    <h2 class="hp-section-title">
+                        Software should<br>
+                        <span class="title-gradient">adapt to people,</span><br>
+                        not the other way around.
+                    </h2>
+                    <p class="hv-desc">
+                        The future isn't about more features — it's about more understanding. 
+                        We're building applications that learn your patterns, anticipate your needs, 
+                        and work silently in the background so you can focus on what matters.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hp-pillars">
+                <div class="hp-pillar reveal">
+                    <div class="hp-pillar-num">01</div>
+                    <div class="hp-pillar-content">
+                        <h4>On-Device Intelligence</h4>
+                        <p>AI that runs locally — fast, private, and always available, even without internet. Your phone becomes the brain.</p>
+                    </div>
+                    <div class="hp-pillar-icon">🧠</div>
+                </div>
+                <div class="hp-pillar reveal">
+                    <div class="hp-pillar-num">02</div>
+                    <div class="hp-pillar-content">
+                        <h4>Zero-Effort Automation</h4>
+                        <p>Apps that do the heavy lifting automatically. SMS detected, categorized, budgeted — without you lifting a finger.</p>
+                    </div>
+                    <div class="hp-pillar-icon">⚙️</div>
+                </div>
+                <div class="hp-pillar reveal">
+                    <div class="hp-pillar-num">03</div>
+                    <div class="hp-pillar-content">
+                        <h4>Beautiful Simplicity</h4>
+                        <p>Complex technology, simple interface. Power users and beginners feel equally at home from day one.</p>
+                    </div>
+                    <div class="hp-pillar-icon">✨</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hp-section hp-cta-section" id="contact">
+        <div class="container">
+            <div class="hp-cta reveal">
+                <div class="hp-cta-glow"></div>
+                <div class="hp-cta-content">
+                    <h2>Ready to experience<br><span class="title-gradient">intelligent software?</span></h2>
+                    <p>Start with BudgetBuddy — our flagship AI-powered personal finance app. Available on Android.</p>
+                    <div class="hp-cta-actions">
+                        <a href="budgetbuddy.html" class="hp-btn-primary">
+                            <span>Get BudgetBuddy Free</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <span class="btn-shimmer"></span>
+                        </a>
+                        <a href="mailto:hello@intelisan.com" class="hp-btn-ghost">
+                            <span>Contact Us</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </a>
+                    </div>
+                    <p class="hp-cta-email">Or reach us at <a href="mailto:hello@intelisan.com">hello@intelisan.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">Intelisan</span>
+                    </a>
+                    <p>Intelligent software for the modern world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="budgetbuddy.html">BudgetBuddy</a>
+                    <a href="promobuddy.html">PromoBuddy</a>
+                    <a href="#">InvestIQ (Soon)</a>
+                    <a href="#">PropertyPulse (Soon)</a>
+                    <a href="#">FreelanceFlow (Soon)</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#about">About</a>
+                    <a href="#vision">Vision</a>
+                    <a href="#">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Intelisan. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="GitHub">⌨</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
 </html>

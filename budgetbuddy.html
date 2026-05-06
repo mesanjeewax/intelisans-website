@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetBuddy — AI-Powered Personal Finance | Intelisan</title>
+    <meta name="description" content="BudgetBuddy automatically tracks expenses, parses bank messages, and gives AI-powered financial insights — all on-device, 100% private.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/budgetbuddy.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+</head>
+<body class="bb-page">
+    <!-- Gradient Mesh Background -->
+    <div class="bb-mesh-bg">
+        <div class="mesh-orb mesh-orb-1"></div>
+        <div class="mesh-orb mesh-orb-2"></div>
+        <div class="mesh-orb mesh-orb-3"></div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Intelisan</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#smart-insights" class="nav-link">Smart Insights</a>
+                <a href="#ai" class="nav-link">AI Engine</a>
+                <a href="#security" class="nav-link">Security</a>
+                <a href="#download" class="nav-link nav-cta">Download</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════
+         HERO — Immersive Split Layout
+    ═══════════════════════════════════════════ -->
+    <section class="bb-hero" id="hero">
+        <div class="bb-hero-content">
+            <div class="bb-hero-badge animate-in">
+                <span class="badge-pulse"></span>
+                <span>On-Device AI</span>
+                <span class="badge-divider">&bull;</span>
+                <span>Zero Cloud</span>
+                <span class="badge-divider">&bull;</span>
+                <span>100% Private</span>
+            </div>
+
+            <h1 class="bb-hero-title animate-in">
+                <span class="title-line">Your Money.</span>
+                <span class="title-line title-gradient">Your AI Advisor.</span>
+            </h1>
+
+            <p class="bb-hero-desc animate-in">
+                BudgetBuddy automatically reads your bank notifications, categorizes every transaction, 
+                and uses an on-device AI to give you real-time insights — without your data ever leaving your phone.
+            </p>
+
+            <div class="bb-hero-actions animate-in">
+                <a href="#download" class="bb-btn-primary">
+                    <span class="btn-shimmer"></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    <span>Download Free</span>
+                </a>
+                <a href="#features" class="bb-btn-ghost">
+                    <span>Explore Features</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+            </div>
+
+            <div class="bb-hero-stats animate-in">
+                <div class="stat-item">
+                    <span class="stat-value" data-target="25">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Banks</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat-item">
+                    <span class="stat-value" data-target="50">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Countries</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat-item">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">On-Device</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bb-hero-visual animate-in">
+            <div class="phone-glow"></div>
+            <div class="phone-frame phone-hero-frame">
+                <img src="images/1000104864.jpg" alt="BudgetBuddy Dashboard" class="phone-img">
+            </div>
+            <div class="floating-card fc-1">
+                <span class="fc-icon">🤖</span>
+                <span class="fc-text">AI Advisor Active</span>
+            </div>
+            <div class="floating-card fc-2">
+                <span class="fc-icon">🔒</span>
+                <span class="fc-text">Data stays on device</span>
+            </div>
+            <div class="floating-card fc-3">
+                <span class="fc-icon">⚡</span>
+                <span class="fc-text">Auto-detected +Rs.3,200</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PROBLEM — Why BudgetBuddy
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-problem" id="problem">
+        <div class="container">
+            <div class="bb-section-header reveal">
+                <span class="bb-tag">The Problem</span>
+                <h2 class="bb-section-title">
+                    We know the struggle.<br>
+                    <span class="title-gradient">That's why we built this.</span>
+                </h2>
+            </div>
+
+            <div class="problem-cards reveal">
+                <div class="problem-card-v2">
+                    <div class="pc-before">
+                        <span class="pc-x">✕</span>
+                        <p>Manual expense entry every day</p>
+                    </div>
+                    <div class="pc-arrow">→</div>
+                    <div class="pc-after">
+                        <span class="pc-check">✓</span>
+                        <p>Automatic SMS parsing — zero effort</p>
+                    </div>
+                </div>
+                <div class="problem-card-v2">
+                    <div class="pc-before">
+                        <span class="pc-x">✕</span>
+                        <p>Uploading data to cloud servers</p>
+                    </div>
+                    <div class="pc-arrow">→</div>
+                    <div class="pc-after">
+                        <span class="pc-check">✓</span>
+                        <p>On-device AI — data never leaves your phone</p>
+                    </div>
+                </div>
+                <div class="problem-card-v2">
+                    <div class="pc-before">
+                        <span class="pc-x">✕</span>
+                        <p>Generic advice from finance apps</p>
+                    </div>
+                    <div class="pc-arrow">→</div>
+                    <div class="pc-after">
+                        <span class="pc-check">✓</span>
+                        <p>Personalized AI insights from YOUR data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FEATURES — Bento Grid Layout
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-features" id="features">
+        <div class="container">
+            <div class="bb-section-header reveal">
+                <span class="bb-tag">Features</span>
+                <h2 class="bb-section-title">
+                    Everything you need.<br>
+                    <span class="title-gradient">Nothing you don't.</span>
+                </h2>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="bento-grid">
+                <!-- Large: Auto Transaction Tracking -->
+                <div class="bento-card bento-large reveal" data-feature="sms">
+                    <div class="bento-content">
+                        <div class="bento-badge">Core Feature</div>
+                        <h3>Automatic Transaction Tracking</h3>
+                        <p>Reads your bank SMS notifications and automatically extracts the merchant, amount, and category. Support for 25+ banks. OTPs, promos, and fraud alerts are filtered out automatically.</p>
+                        <div class="bento-tags">
+                            <span>25+ Banks</span>
+                            <span>Smart Filtering</span>
+                            <span>Auto-Categorize</span>
+                        </div>
+                    </div>
+                    <div class="bento-visual">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104874.jpg" alt="Transaction Tracking" class="phone-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium: Natural Language Input -->
+                <div class="bento-card bento-medium reveal" data-feature="nlp">
+                    <div class="bento-content">
+                        <h3>Natural Language Input</h3>
+                        <p>Just type like you're texting. "Spent 2800 at Pizza Hut for dinner" — amount, store, category, and date parsed instantly.</p>
+                        <div class="bento-tags">
+                            <span>Conversational</span>
+                            <span>Multi-Currency</span>
+                        </div>
+                    </div>
+                    <div class="bento-chat-demo">
+                        <div class="chat-msg chat-user">Spent 2800 at Pizza Hut for dinner</div>
+                        <div class="chat-msg chat-ai">
+                            <div class="chat-parsed">
+                                <span>💰 Rs. 2,800</span>
+                                <span>🍕 Pizza Hut</span>
+                                <span>🍔 Food &amp; Dining</span>
+                            </div>
+                            <span class="chat-status">✓ Parsed instantly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium: Budget Management -->
+                <div class="bento-card bento-medium reveal" data-feature="budget">
+                    <div class="bento-content">
+                        <h3>Smart Budget Management</h3>
+                        <p>50/30/20 rule or custom plans. Real-time progress with visual gauges. Get alerts before you overspend.</p>
+                        <div class="bento-tags">
+                            <span>50/30/20 Rule</span>
+                            <span>Custom Plans</span>
+                        </div>
+                    </div>
+                    <div class="bento-budget-visual">
+                        <div class="budget-ring-wrapper">
+                            <svg viewBox="0 0 120 120" class="budget-ring-svg">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="url(#goldGrad)" stroke-width="10" stroke-dasharray="200 327" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                                <defs><linearGradient id="goldGrad"><stop offset="0%" stop-color="#C5A55A"/><stop offset="100%" stop-color="#E8D5A3"/></linearGradient></defs>
+                            </svg>
+                            <div class="budget-ring-text">
+                                <span class="ring-pct-v2">62%</span>
+                                <span class="ring-lbl">Remaining</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small: Savings Goals -->
+                <div class="bento-card bento-small reveal" data-feature="savings">
+                    <div class="bento-icon-wrap savings-icon">🎯</div>
+                    <h4>Savings Goals</h4>
+                    <p>Set multiple targets. Track progress with visual cards and countdown timers.</p>
+                </div>
+
+                <!-- Small: Due Dates -->
+                <div class="bento-card bento-small reveal" data-feature="bills">
+                    <div class="bento-icon-wrap bills-icon">📅</div>
+                    <h4>Bill Reminders</h4>
+                    <p>Never miss a payment. Smart reminders 3 days before bills are due.</p>
+                </div>
+
+                <!-- Small: Analytics -->
+                <div class="bento-card bento-small reveal" data-feature="analytics">
+                    <div class="bento-icon-wrap analytics-icon">📊</div>
+                    <h4>Rich Analytics</h4>
+                    <p>Spending heat maps, pie charts, monthly reports, and trend analysis.</p>
+                </div>
+
+                <!-- Small: Setup Wizard -->
+                <div class="bento-card bento-small reveal" data-feature="wizard">
+                    <div class="bento-icon-wrap wizard-icon">🧙</div>
+                    <h4>Easy Onboarding</h4>
+                    <p>Step-by-step wizard. Resume anytime — it remembers where you left off.</p>
+                </div>
+
+                <!-- Wide: Adaptive Quick-Add -->
+                <div class="bento-card bento-wide reveal" data-feature="adaptive">
+                    <div class="bento-content">
+                        <h3>Adaptive Quick-Add</h3>
+                        <p>BudgetBuddy learns from you. Your most frequent expenses appear as one-tap shortcuts. The more you use it, the faster it gets.</p>
+                    </div>
+                    <div class="adaptive-chips-demo">
+                        <div class="achip" style="--d:0s">☕ Coffee 250 at Starbucks</div>
+                        <div class="achip" style="--d:0.1s">🛒 Groceries 1500 at Keells</div>
+                        <div class="achip" style="--d:0.2s">⛽ Fuel 3000 at Shell</div>
+                        <div class="achip" style="--d:0.3s">🍔 Lunch 350 at KFC</div>
+                        <div class="achip" style="--d:0.4s">🚌 Bus 60</div>
+                    </div>
+                </div>
+
+                <!-- Medium: Tags & Notes -->
+                <div class="bento-card bento-medium reveal" data-feature="tags">
+                    <div class="bento-content">
+                        <h3>Tags &amp; Notes</h3>
+                        <p>Add context to every expense. Tag transactions with "work," "vacation," or "shared." Notes like "Birthday dinner" give extra detail.</p>
+                        <div class="bento-tags">
+                            <span>Custom Tags</span>
+                            <span>Quick Notes</span>
+                            <span>Color Chips</span>
+                        </div>
+                    </div>
+                    <div class="tags-demo">
+                        <div class="tag-chip tc-blue">🏷️ work</div>
+                        <div class="tag-chip tc-green">🏷️ groceries</div>
+                        <div class="tag-chip tc-purple">🏷️ vacation</div>
+                        <div class="tag-chip tc-orange">🏷️ shared</div>
+                        <div class="tag-chip tc-gold">🏷️ rent</div>
+                    </div>
+                </div>
+
+                <!-- Medium: Commitment Tag Matching -->
+                <div class="bento-card bento-medium reveal" data-feature="commitment">
+                    <div class="bento-content">
+                        <h3>Commitment Tag Matching</h3>
+                        <p>Tag a commitment like "rent." When a transaction with the same tag is detected, BudgetBuddy automatically marks it <strong>Paid</strong>. Partial payments tracked too.</p>
+                        <div class="bento-tags">
+                            <span>Auto-Match</span>
+                            <span>Paid / Partial / Pending</span>
+                        </div>
+                    </div>
+                    <div class="commitment-demo">
+                        <div class="commit-item">
+                            <span class="commit-name">🏠 Rent</span>
+                            <span class="commit-tag">#rent</span>
+                            <span class="commit-status status-paid">✓ Paid</span>
+                        </div>
+                        <div class="commit-item">
+                            <span class="commit-name">📱 Phone</span>
+                            <span class="commit-tag">#phone</span>
+                            <span class="commit-status status-partial">◐ Partial</span>
+                        </div>
+                        <div class="commit-item">
+                            <span class="commit-name">💳 Loan</span>
+                            <span class="commit-tag">#loan</span>
+                            <span class="commit-status status-pending">○ Pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small: Search Tab -->
+                <div class="bento-card bento-small reveal" data-feature="search">
+                    <div class="bento-icon-wrap search-icon">🔍</div>
+                    <h4>Dedicated Search</h4>
+                    <p>Find any expense instantly across descriptions, categories, tags, and amounts.</p>
+                </div>
+
+                <!-- Small: Multi-Currency -->
+                <div class="bento-card bento-small reveal" data-feature="currency">
+                    <div class="bento-icon-wrap currency-icon">🌍</div>
+                    <h4>Multi-Currency</h4>
+                    <p>Log in Rs, USD, GBP, EUR, AUD, or PHP. Works across 50+ countries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SMART INSIGHTS — Proactive AI Alerts (NEW)
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-smart-insights" id="smart-insights">
+        <div class="container">
+            <div class="si-hero-card reveal">
+                <div class="si-card-glow"></div>
+                <div class="si-card-content">
+                    <div class="si-exclusive-badge">
+                        <span class="si-badge-dot"></span>
+                        <span>Industry First</span>
+                    </div>
+                    <span class="bb-tag bb-tag-si">New &mdash; Exclusive Feature</span>
+                    <h2 class="bb-section-title">
+                        Smart Insights<br>
+                        <span class="title-gradient-si">That Come to You.</span>
+                    </h2>
+                    <p class="si-desc">
+                        Other apps wait for you to dig through charts. BudgetBuddy <strong>proactively alerts you</strong> when something 
+                        needs attention — before it becomes a problem. No other personal finance app does this on-device.
+                    </p>
+                </div>
+            </div>
+
+            <div class="si-features-grid">
+                <!-- Spending Anomaly -->
+                <div class="si-feature-card reveal">
+                    <div class="si-feature-icon si-icon-anomaly">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M3 3v18h18"/>
+                            <path d="M7 16l4-8 4 4 4-8"/>
+                        </svg>
+                    </div>
+                    <h3>Spending Anomaly Alerts</h3>
+                    <p>When you spend <strong>2&times; or more</strong> than your 3-month average in any category, BudgetBuddy flags it immediately. No need to manually compare — the app does it for you.</p>
+                    <div class="si-demo-alert">
+                        <div class="si-alert-bar">
+                            <span class="si-alert-icon">⚠️</span>
+                            <span class="si-alert-text">Dining spending is 3.2&times; higher</span>
+                        </div>
+                        <span class="si-alert-detail">You've spent 4,800 on Dining — your 3-month avg is 1,500.</span>
+                    </div>
+                </div>
+
+                <!-- Bill Shortfall -->
+                <div class="si-feature-card reveal">
+                    <div class="si-feature-icon si-icon-shortfall">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4M12 16h.01"/>
+                        </svg>
+                    </div>
+                    <h3>Bill Shortfall Prediction</h3>
+                    <p>BudgetBuddy continuously compares your <strong>remaining income vs. unpaid commitments</strong>. If you won't have enough left to cover upcoming bills, you'll know before it's too late.</p>
+                    <div class="si-demo-alert si-alert-red">
+                        <div class="si-alert-bar">
+                            <span class="si-alert-icon">🚨</span>
+                            <span class="si-alert-text">Bill shortfall of 12,500</span>
+                        </div>
+                        <span class="si-alert-detail">Remaining income may not cover Rent, Phone, Loan.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How it works strip -->
+            <div class="si-how-it-works reveal">
+                <div class="si-step">
+                    <div class="si-step-num">1</div>
+                    <p>App loads &amp; computes insights from your data</p>
+                </div>
+                <div class="si-step-arrow">&rarr;</div>
+                <div class="si-step">
+                    <div class="si-step-num">2</div>
+                    <p>AI button transforms — pulses amber with a lightbulb</p>
+                </div>
+                <div class="si-step-arrow">&rarr;</div>
+                <div class="si-step">
+                    <div class="si-step-num">3</div>
+                    <p>Tap it &rarr; see detailed insight banner in AI Advisor</p>
+                </div>
+            </div>
+
+            <!-- Differentiator callout -->
+            <div class="si-differentiator reveal">
+                <div class="si-diff-icon">💡</div>
+                <div class="si-diff-content">
+                    <h4>Why this matters</h4>
+                    <p>Most finance apps are <em>reactive</em> — they show you what already happened. BudgetBuddy is <strong>proactive</strong>. It watches your patterns in real-time, on-device, and tells you what's about to go wrong. All without sending a single byte of your data to the cloud.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         AI SECTION — Immersive Experience
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-ai" id="ai">
+        <div class="container">
+            <div class="ai-hero-card reveal">
+                <div class="ai-card-glow"></div>
+                <div class="ai-card-content">
+                    <span class="bb-tag bb-tag-ai">Game-Changing Feature</span>
+                    <h2 class="bb-section-title">
+                        On-Device AI Advisor<br>
+                        <span class="title-gradient-ai">— A First of Its Kind.</span>
+                    </h2>
+                    <p class="ai-desc">
+                        Most finance apps track numbers. BudgetBuddy <strong>understands</strong> them. 
+                        Our AI advisor runs entirely on your device — no internet, no cloud, no data sharing. 
+                        Ask it anything about your finances and get instant, personalized answers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- AI Screenshot Showcase -->
+            <div class="ai-phones reveal">
+                <div class="ai-phone-item">
+                    <div class="phone-frame phone-sm">
+                        <img src="images/1000104873.jpg" alt="AI Advisor - Transactions" class="phone-img">
+                    </div>
+                    <div class="ai-phone-label">
+                        <span class="apl-tag">📊 Transactions</span>
+                        <p>"What did I spend the most on?"</p>
+                    </div>
+                </div>
+                <div class="ai-phone-item ai-phone-center">
+                    <div class="phone-frame phone-md">
+                        <img src="images/1000104872.jpg" alt="AI Advisor - Bills" class="phone-img">
+                    </div>
+                    <div class="ai-phone-label">
+                        <span class="apl-tag">📅 Bills</span>
+                        <p>"What bills are due soon?"</p>
+                    </div>
+                </div>
+                <div class="ai-phone-item">
+                    <div class="phone-frame phone-sm">
+                        <img src="images/1000104871.jpg" alt="AI Advisor - Savings" class="phone-img">
+                    </div>
+                    <div class="ai-phone-label">
+                        <span class="apl-tag">💰 Savings</span>
+                        <p>"How can I save more?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Capabilities Grid -->
+            <div class="ai-caps-grid">
+                <div class="ai-cap reveal">
+                    <div class="ai-cap-icon">💬</div>
+                    <h4>Ask Anything</h4>
+                    <p>Conversational interface with tabs for Transactions, Spending, Budget, Bills, Savings, and Monthly Summary.</p>
+                </div>
+                <div class="ai-cap reveal">
+                    <div class="ai-cap-icon">📱</div>
+                    <h4>Works Offline</h4>
+                    <p>The AI model lives on your phone. No internet required. Get advice anywhere.</p>
+                </div>
+                <div class="ai-cap reveal">
+                    <div class="ai-cap-icon">🔒</div>
+                    <h4>Zero Data Leakage</h4>
+                    <p>Your financial conversations stay on your phone. No server logs. No cloud. Ever.</p>
+                </div>
+                <div class="ai-cap reveal">
+                    <div class="ai-cap-icon">⚡</div>
+                    <h4>Instant Responses</h4>
+                    <p>No server round-trips. On-device model responds in seconds with real analysis.</p>
+                </div>
+                <div class="ai-cap reveal">
+                    <div class="ai-cap-icon">🎯</div>
+                    <h4>Personalized</h4>
+                    <p>Analyzes YOUR income, YOUR spending, YOUR goals for advice that actually applies.</p>
+                </div>
+                <div class="ai-cap reveal">
+                    <div class="ai-cap-icon">📊</div>
+                    <h4>Multi-Tab AI</h4>
+                    <p>Dedicated modes for Transactions, Spending, Budget, Bills, Savings, and Monthly Summary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECURITY — Shield Design
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-security" id="security">
+        <div class="container">
+            <div class="security-split reveal">
+                <div class="security-content">
+                    <span class="bb-tag">Privacy &amp; Security</span>
+                    <h2 class="bb-section-title">
+                        Your privacy is<br>
+                        <span class="title-gradient">non-negotiable.</span>
+                    </h2>
+                    <div class="security-features">
+                        <div class="sec-feat">
+                            <div class="sec-feat-icon">🔐</div>
+                            <div>
+                                <h4>Biometric Lock</h4>
+                                <p>Fingerprint and Face ID authentication keeps your data locked behind your identity.</p>
+                            </div>
+                        </div>
+                        <div class="sec-feat">
+                            <div class="sec-feat-icon">📱</div>
+                            <div>
+                                <h4>On-Device Processing</h4>
+                                <p>All AI processing happens locally. Your transactions never touch any server.</p>
+                            </div>
+                        </div>
+                        <div class="sec-feat">
+                            <div class="sec-feat-icon">🔒</div>
+                            <div>
+                                <h4>PIN Protection</h4>
+                                <p>Custom PIN as an additional security layer. Data is encrypted at rest.</p>
+                            </div>
+                        </div>
+                        <div class="sec-feat">
+                            <div class="sec-feat-icon">🛡️</div>
+                            <div>
+                                <h4>No Data Harvesting</h4>
+                                <p>We don't sell, share, or analyze your data. Your finances are yours — period.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="security-visual">
+                    <div class="phone-frame phone-md">
+                        <img src="images/1000104866.jpg" alt="Security Settings" class="phone-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         COMPLETE TOOLKIT — Feature Strip
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-toolkit">
+        <div class="container">
+            <div class="bb-section-header reveal">
+                <span class="bb-tag">Complete Toolkit</span>
+                <h2 class="bb-section-title">
+                    Everything<br><span class="title-gradient">at a glance.</span>
+                </h2>
+            </div>
+            <div class="toolkit-grid reveal">
+                <div class="tk-item"><span>📱</span> Automatic SMS Parsing</div>
+                <div class="tk-item"><span>🤖</span> On-Device AI Advisor</div>
+                <div class="tk-item"><span>💬</span> Natural Language Input</div>
+                <div class="tk-item"><span>📊</span> 50/30/20 Budget Rule</div>
+                <div class="tk-item"><span>🎯</span> Savings Goals</div>
+                <div class="tk-item"><span>📅</span> Bill Reminders</div>
+                <div class="tk-item"><span>🔥</span> Spending Heat Maps</div>
+                <div class="tk-item"><span>📈</span> Monthly Reports</div>
+                <div class="tk-item"><span>💳</span> Multi-Bank Support</div>
+                <div class="tk-item"><span>🌍</span> Multi-Currency</div>
+                <div class="tk-item"><span>🔐</span> Biometric Auth</div>
+                <div class="tk-item"><span>🔔</span> Push Notifications</div>
+                <div class="tk-item"><span>🏪</span> Store Database</div>
+                <div class="tk-item"><span>🧮</span> Income Tracking</div>
+                <div class="tk-item"><span>📋</span> Financial Wizard</div>
+                <div class="tk-item"><span>🎨</span> Custom Categories</div>
+                <div class="tk-item"><span>🌙</span> Dark Mode</div>
+                <div class="tk-item"><span>📲</span> Quick Add Widget</div>
+                <div class="tk-item"><span>🏦</span> 25+ Banks</div>
+                <div class="tk-item"><span>🧙</span> Easy Setup Wizard</div>
+                <div class="tk-item"><span>💾</span> Resume Where You Left</div>
+                <div class="tk-item"><span>🧠</span> Adaptive Quick-Add</div>
+                <div class="tk-item"><span>🏷️</span> Tags &amp; Notes</div>
+                <div class="tk-item"><span>🔍</span> Dedicated Search Tab</div>
+                <div class="tk-item"><span>🏷️</span> Commitment Tag Matching</div>
+                <div class="tk-item"><span>🌍</span> 50+ Countries</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SCREENSHOTS — Gallery Carousel
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-gallery">
+        <div class="container">
+            <div class="bb-section-header reveal">
+                <span class="bb-tag">App Gallery</span>
+                <h2 class="bb-section-title">
+                    See it in<br><span class="title-gradient">action.</span>
+                </h2>
+            </div>
+            <div class="gallery-scroll reveal">
+                <div class="gallery-track">
+                    <div class="gallery-item">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104864.jpg" alt="Home Dashboard" class="phone-img">
+                        </div>
+                        <span class="gallery-label">Home</span>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104874.jpg" alt="Today's Activity" class="phone-img">
+                        </div>
+                        <span class="gallery-label">Today</span>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104875.jpg" alt="My Finances" class="phone-img">
+                        </div>
+                        <span class="gallery-label">My Finances</span>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104869.jpg" alt="Insights" class="phone-img">
+                        </div>
+                        <span class="gallery-label">Insights</span>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104867.jpg" alt="Reminders" class="phone-img">
+                        </div>
+                        <span class="gallery-label">Reminders</span>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="phone-frame phone-sm">
+                            <img src="images/1000104870.jpg" alt="Settings" class="phone-img">
+                        </div>
+                        <span class="gallery-label">Settings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         DOWNLOAD CTA
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-download" id="download">
+        <div class="container">
+            <div class="download-cta reveal">
+                <div class="cta-glow"></div>
+                <div class="cta-content">
+                    <h2>Take control of<br><span class="title-gradient">your finances today.</span></h2>
+                    <p>Download BudgetBuddy for free and let AI handle the tedious work of tracking your money.</p>
+                    <div class="download-buttons">
+                        <a href="#" class="store-btn">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                            <div>
+                                <small>Download on the</small>
+                                <strong>App Store</strong>
+                            </div>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.intelisan.budgetbuddy&pcampaignid=web_share" class="store-btn" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3.18 23.72c-.37-.2-.68-.57-.82-1.09L7.44 12 2.36 1.37C2.5.87 2.8.5 3.18.3l9.73 11.7L3.18 23.72zm1.42.28L14 14.72 16.84 17 4.6 24zm0-24L16.84 7 14 9.28 4.6 0zM21.78 11l-3.64 2.12L15.12 12l3.02-1.12L21.78 11z"/></svg>
+                            <div>
+                                <small>Get it on</small>
+                                <strong>Google Play</strong>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="qr-download">
+                        <img src="images/qr-playstore.png" alt="Scan to download BudgetBuddy from Google Play" width="140" height="140">
+                        <p>Scan with your phone to download</p>
+                    </div>
+                    <p class="download-note">Available now on Android. iOS coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FAQ
+    ═══════════════════════════════════════════ -->
+    <section class="bb-section bb-faq">
+        <div class="container">
+            <div class="bb-section-header reveal">
+                <span class="bb-tag">FAQ</span>
+                <h2 class="bb-section-title">
+                    Frequently asked<br><span class="title-gradient">questions</span>
+                </h2>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What exactly does BudgetBuddy do?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>BudgetBuddy is an AI-powered personal finance app that automatically tracks your expenses by reading bank SMS notifications. It categorizes your spending, manages budgets using the 50/30/20 rule, tracks savings goals, and provides AI-powered financial insights — all without your data ever leaving your device.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I have to manually enter every expense?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No! BudgetBuddy automatically reads your bank SMS notifications and extracts transaction details. You can also type expenses in natural language like "Spent 2800 at Pizza Hut" and the AI will parse everything automatically. Manual entry is always an option if you prefer.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is my financial data safe?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. BudgetBuddy processes everything on your device using an on-device AI model. Your financial data never leaves your phone. The app supports biometric authentication (fingerprint/Face ID) and PIN protection. We don't sell, share, or have access to your data.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Which banks are supported?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>BudgetBuddy supports 25+ banks across Sri Lanka (BOC, HNB, Sampath, Commercial Bank, NTB, Seylan, DFCC, and more), UK, US, Australia, and Philippines. We're constantly adding more banks based on user feedback.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does the AI need internet to work?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. The AI model runs entirely on your device. You can get financial advice, parse expenses, and view insights even without an internet connection. Internet is only needed for initial app download.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is BudgetBuddy free?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>BudgetBuddy is free to download and use with core features. We believe everyone should have access to smart financial tools regardless of their budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">Intelisan</span>
+                    </a>
+                    <p>Intelligent software for the modern world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="products.html">All Products</a>
+                    <a href="budgetbuddy.html">BudgetBuddy</a>
+                    <a href="promobuddy.html">PromoBuddy</a>
+                    <a href="#">InvestIQ (Soon)</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#vision">Vision</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Intelisan. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="GitHub">⌨</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

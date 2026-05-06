@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — Intelisan</title>
+    <meta name="description" content="Explore Intelisan's suite of intelligent, AI-powered applications. From personal finance to deal-finding, we build software that thinks with you.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <style>
+        /* Products page specific styles */
+        .products-hero {
+            min-height: 50vh;
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+        .products-hero .hero-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .products-hero .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+        .products-hero .hero-subtitle {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .products-grid-section {
+            padding: 60px 0 100px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            position: relative;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1), border-color 0.35s, box-shadow 0.35s;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(197,165,90,0.35);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(197,165,90,0.08);
+        }
+
+        .product-card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        .badge-live {
+            background: rgba(197,165,90,0.15);
+            color: #C5A55A;
+            border: 1px solid rgba(197,165,90,0.3);
+        }
+        .badge-soon {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .product-card-visual {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(197,165,90,0.06) 0%, rgba(10,22,40,0.4) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .product-card-visual .product-icon {
+            font-size: 64px;
+            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+        }
+
+        .product-card-body {
+            padding: 28px 24px 24px;
+        }
+        .product-card-body h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .product-card-body .product-tagline {
+            font-size: 13px;
+            color: #C5A55A;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .product-card-body p.product-summary {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+        }
+
+        .product-card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .product-card-features span {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            font-weight: 500;
+        }
+
+        .product-card-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #C5A55A;
+            text-decoration: none;
+            transition: gap 0.25s;
+        }
+        .product-card-action:hover {
+            gap: 12px;
+        }
+        .product-card-action svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .product-card.coming-soon {
+            opacity: 0.65;
+        }
+        .product-card.coming-soon:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255,255,255,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .product-card.coming-soon .product-card-action {
+            color: rgba(255,255,255,0.35);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Intelisan</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link active">Products</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero products-hero" id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge animate-in">
+                <span class="badge-dot"></span>
+                Our Product Suite
+            </div>
+            <h1 class="hero-title animate-in">
+                Intelligent Apps,<br>
+                <span class="gradient-text">Real Solutions.</span>
+            </h1>
+            <p class="hero-subtitle animate-in">
+                Each product is built with on-device AI, privacy-first architecture, and obsessive attention to design. Explore our suite below.
+            </p>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-grid-section">
+        <div class="container">
+            <div class="products-grid">
+
+                <!-- BudgetBuddy -->
+                <div class="product-card reveal">
+                    <span class="product-card-badge badge-live">Live</span>
+                    <div class="product-card-visual">
+                        <span class="product-icon">💰</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>BudgetBuddy</h3>
+                        <p class="product-tagline">AI-Powered Personal Finance</p>
+                        <p class="product-summary">
+                            Automatically tracks expenses from bank SMS, categorizes spending with AI, 
+                            manages budgets, tracks savings goals, and delivers real-time insights — 
+                            all on-device with zero cloud dependency.
+                        </p>
+                        <div class="product-card-features">
+                            <span>Auto SMS Parsing</span>
+                            <span>On-Device AI</span>
+                            <span>Budget Rules</span>
+                            <span>Tags & Notes</span>
+                            <span>Smart Search</span>
+                            <span>25+ Banks</span>
+                        </div>
+                        <a href="budgetbuddy.html" class="product-card-action">
+                            Learn more
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PromoBuddy -->
+                <div class="product-card reveal">
+                    <span class="product-card-badge badge-live">Live</span>
+                    <div class="product-card-visual">
+                        <span class="product-icon">🏷️</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>PromoBuddy</h3>
+                        <p class="product-tagline">Never Miss a Deal Again</p>
+                        <p class="product-summary">
+                            Detects promotions from bank and store notifications, finds nearby deals, 
+                            and matches offers to your spending habits — so you save effortlessly. 
+                            Powered by the same on-device AI engine.
+                        </p>
+                        <div class="product-card-features">
+                            <span>Auto Promo Detection</span>
+                            <span>Nearby Deals</span>
+                            <span>Card-Linked Offers</span>
+                            <span>Smart Alerts</span>
+                        </div>
+                        <a href="promobuddy.html" class="product-card-action">
+                            Learn more
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- InvestIQ -->
+                <div class="product-card coming-soon reveal">
+                    <span class="product-card-badge badge-soon">Coming Soon</span>
+                    <div class="product-card-visual">
+                        <span class="product-icon">📈</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>InvestIQ</h3>
+                        <p class="product-tagline">Smart Investment Analysis</p>
+                        <p class="product-summary">
+                            AI-driven portfolio analysis and investment recommendations tailored to 
+                            your risk profile, goals, and market conditions.
+                        </p>
+                        <div class="product-card-features">
+                            <span>Portfolio Analysis</span>
+                            <span>Risk Profiling</span>
+                            <span>AI Recommendations</span>
+                        </div>
+                        <span class="product-card-action">Coming soon →</span>
+                    </div>
+                </div>
+
+                <!-- PropertyPulse -->
+                <div class="product-card coming-soon reveal">
+                    <span class="product-card-badge badge-soon">Coming Soon</span>
+                    <div class="product-card-visual">
+                        <span class="product-icon">🏠</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>PropertyPulse</h3>
+                        <p class="product-tagline">Real Estate Intelligence</p>
+                        <p class="product-summary">
+                            Smart property valuation and real estate market insights powered by 
+                            machine learning. Make confident decisions on your biggest investments.
+                        </p>
+                        <div class="product-card-features">
+                            <span>Market Insights</span>
+                            <span>Valuation AI</span>
+                            <span>Trend Forecasting</span>
+                        </div>
+                        <span class="product-card-action">Coming soon →</span>
+                    </div>
+                </div>
+
+                <!-- FreelanceFlow -->
+                <div class="product-card coming-soon reveal">
+                    <span class="product-card-badge badge-soon">Coming Soon</span>
+                    <div class="product-card-visual">
+                        <span class="product-icon">💼</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>FreelanceFlow</h3>
+                        <p class="product-tagline">Freelancer Toolkit</p>
+                        <p class="product-summary">
+                            All-in-one freelancer toolkit — invoicing, time tracking, and client 
+                            management with AI automation to eliminate admin work.
+                        </p>
+                        <div class="product-card-features">
+                            <span>Smart Invoicing</span>
+                            <span>Time Tracking</span>
+                            <span>Client Management</span>
+                        </div>
+                        <span class="product-card-action">Coming soon →</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" id="contact">
+        <div class="container">
+            <div class="cta-card reveal">
+                <div class="cta-glow"></div>
+                <h2>Want to know when<br><span class="gradient-text">new products launch?</span></h2>
+                <p>Follow Intelisan for updates on our latest intelligent software.</p>
+                <div class="cta-actions">
+                    <a href="index.html#contact" class="btn btn-primary btn-lg">
+                        <span>Get in Touch</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">Intelisan</span>
+                    </a>
+                    <p>Intelligent software for the modern world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="budgetbuddy.html">BudgetBuddy</a>
+                    <a href="promobuddy.html">PromoBuddy</a>
+                    <a href="#">InvestIQ (Soon)</a>
+                    <a href="#">PropertyPulse (Soon)</a>
+                    <a href="#">FreelanceFlow (Soon)</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#vision">Vision</a>
+                    <a href="#">Careers</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Intelisan. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="GitHub">⌨</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
