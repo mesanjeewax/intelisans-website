@@ -4,12 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PromoBuddy — Smart Deal Discovery | Intelisan</title>
-    <meta name="description" content="PromoBuddy automatically finds and matches promotions, deals, and rewards to your spending habits — so you save money without even trying.">
+    <meta name="description" content="PromoBuddy automatically finds and matches promotions, deals, and rewards — powered by AI. Features SMS deal detection, nearby deals, merchant portal with AI-generated banners, quick deals, and more.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>">
+    <style>
+        /* PromoBuddy specific styles */
+        .pb-screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .pb-screenshot-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(202, 165, 94, 0.15);
+            background: rgba(255,255,255,0.03);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .pb-screenshot-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(202, 165, 94, 0.4);
+        }
+        .pb-screenshot-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .pb-screenshot-card .card-label {
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+        }
+        .pb-screenshot-card .card-desc {
+            padding: 0 20px 16px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.5;
+        }
+        .pb-portal-section {
+            background: linear-gradient(135deg, rgba(202, 165, 94, 0.05) 0%, rgba(15, 25, 35, 0.8) 100%);
+            border-top: 1px solid rgba(202, 165, 94, 0.1);
+            border-bottom: 1px solid rgba(202, 165, 94, 0.1);
+        }
+        .pb-portal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .pb-portal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .pb-portal-img {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid rgba(202, 165, 94, 0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .pb-portal-features {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0 0;
+        }
+        .pb-portal-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .pb-portal-features li span.pf-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .pb-dual-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+        @media (max-width: 768px) {
+            .pb-dual-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        .pb-dual-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 32px;
+            transition: border-color 0.3s;
+        }
+        .pb-dual-card:hover {
+            border-color: rgba(202, 165, 94, 0.3);
+        }
+        .pb-dual-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .pb-dual-card p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .pb-dual-card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .pb-dual-card .dual-emoji {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+    </style>
 </head>
 <body class="product-page promo-page">
     <!-- Particle Canvas -->
@@ -26,8 +150,9 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="products.html" class="nav-link">Products</a>
                 <a href="#features" class="nav-link">Features</a>
+                <a href="#merchant-portal" class="nav-link">Merchant Portal</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="#download" class="nav-link nav-cta">Get Early Access</a>
+                <a href="#download" class="nav-link nav-cta">Get the App</a>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -35,29 +160,32 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ═══════════════════════════════════════════
+         HERO — PromoBuddy Main
+    ═══════════════════════════════════════════ -->
     <section class="hero product-hero" id="hero">
         <div class="hero-glow"></div>
         <div class="hero-content">
             <div class="hero-badge animate-in">
                 <span class="badge-dot"></span>
-                From the Makers of BudgetBuddy
+                AI-Powered Deal Discovery Platform
             </div>
             <h1 class="hero-title animate-in">
                 Every Deal,<br>
                 <span class="gradient-text">Found For You.</span>
             </h1>
             <p class="hero-subtitle animate-in">
-                PromoBuddy automatically detects promotions from your banks, favorite stores,
-                and card networks — then matches them to your spending habits so you never miss a saving opportunity.
+                PromoBuddy is a complete promotions ecosystem — an intelligent mobile app that auto-detects deals
+                from SMS notifications, a merchant portal for creating AI-powered campaigns, and a real-time
+                deal feed that puts the best offers in your pocket.
             </p>
             <div class="hero-actions animate-in">
                 <a href="#download" class="btn btn-primary">
-                    <span>Get Early Access</span>
+                    <span>Download Now</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                 </a>
                 <a href="#features" class="btn btn-ghost">
-                    <span>See Features</span>
+                    <span>Explore Features</span>
                 </a>
             </div>
             <div class="hero-trust animate-in">
@@ -68,7 +196,7 @@
                     <div class="avatar" style="--bg: #42A5F5;">K</div>
                     <div class="avatar" style="--bg: #EF5350;">M</div>
                 </div>
-                <span>Built by the team behind BudgetBuddy</span>
+                <span>Two sides of the same coin — App for consumers, Portal for merchants</span>
             </div>
         </div>
         <div class="hero-visual animate-in">
@@ -76,49 +204,51 @@
                 <div class="phone-screen">
                     <div class="mock-header">
                         <span class="mock-greeting">Today's Deals 🏷️</span>
-                        <span class="mock-balance">5 Active Offers</span>
+                        <span class="mock-balance">12 Active Offers</span>
+                    </div>
+                    <div class="mock-transaction">
+                        <span class="tx-icon">🍕</span>
+                        <div class="tx-info">
+                            <span class="tx-name">Domino's</span>
+                            <span class="tx-cat">Rs. 1,000 OFF Big Big Pizzas</span>
+                        </div>
+                        <span class="tx-amount" style="color: var(--accent-2);">Save Rs.1,000</span>
                     </div>
                     <div class="mock-transaction">
                         <span class="tx-icon">🛒</span>
                         <div class="tx-info">
-                            <span class="tx-name">Keells Super</span>
-                            <span class="tx-cat">20% off with HNB Visa</span>
+                            <span class="tx-name">Supermarket Deal</span>
+                            <span class="tx-cat">25% OFF — valid this weekend</span>
                         </div>
-                        <span class="tx-amount" style="color: var(--accent-2);">Save Rs.800</span>
+                        <span class="tx-amount" style="color: var(--accent-2);">25% OFF</span>
                     </div>
                     <div class="mock-transaction">
-                        <span class="tx-icon">☕</span>
+                        <span class="tx-icon">🍗</span>
                         <div class="tx-info">
-                            <span class="tx-name">Starbucks</span>
-                            <span class="tx-cat">Buy 1 Get 1 Free — ends today</span>
+                            <span class="tx-name">KFC</span>
+                            <span class="tx-cat">4 Crispy Burgers combo — Rs.2,990</span>
                         </div>
-                        <span class="tx-amount" style="color: var(--accent-2);">BOGO</span>
+                        <span class="tx-amount" style="color: var(--accent-2);">Combo</span>
                     </div>
                     <div class="mock-transaction">
-                        <span class="tx-icon">⛽</span>
+                        <span class="tx-icon">🍕</span>
                         <div class="tx-info">
-                            <span class="tx-name">Lanka IOC</span>
-                            <span class="tx-cat">5x reward points today</span>
+                            <span class="tx-name">Pizza Hut</span>
+                            <span class="tx-cat">15% saving on your next order</span>
                         </div>
-                        <span class="tx-amount" style="color: var(--accent-2);">Reward</span>
-                    </div>
-                    <div class="mock-transaction">
-                        <span class="tx-icon">👕</span>
-                        <div class="tx-info">
-                            <span class="tx-name">Fashion Bug</span>
-                            <span class="tx-cat">Buy 2 Get 1 Free</span>
-                        </div>
-                        <span class="tx-amount" style="color: var(--accent-2);">3 days</span>
+                        <span class="tx-amount" style="color: var(--accent-2);">15% OFF</span>
                     </div>
                     <div class="mock-ai-chip">
-                        <span>💡</span> You'd save Rs. 4,200/mo with these offers
+                        <span>💡</span> 3 deals matched near you right now
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
+    <!-- ═══════════════════════════════════════════
+         PROBLEM SECTION
+    ═══════════════════════════════════════════ -->
     <section class="section problem-section">
         <div class="container">
             <div class="problem-content reveal">
@@ -127,9 +257,9 @@
                     <span class="gradient-text">You're missing most of them.</span>
                 </h2>
                 <p class="problem-text">
-                    Your bank sends promo SMS. Stores email coupons. Loyalty apps buzz with points.
-                    But who has time to track all that? PromoBuddy does it automatically — surfacing only the deals
-                    that actually match how you spend.
+                    Promo SMS flood your inbox. Store offers expire before you notice.
+                    Merchants struggle to reach the right customers. PromoBuddy bridges the gap —
+                    an intelligent platform that connects consumers with the deals that matter most.
                 </p>
             </div>
             <div class="problem-grid">
@@ -146,28 +276,75 @@
                 <div class="problem-card reveal">
                     <div class="problem-before">
                         <span class="problem-x">✕</span>
-                        <span>Forgetting to use coupons before they expire</span>
+                        <span>Merchants can't reach interested customers</span>
                     </div>
                     <div class="problem-after">
                         <span class="problem-check">✓</span>
-                        <span>Smart reminders before deals expire</span>
+                        <span>Merchant Portal with AI-powered campaign tools</span>
                     </div>
                 </div>
                 <div class="problem-card reveal">
                     <div class="problem-before">
                         <span class="problem-x">✕</span>
-                        <span>Deals for things you never buy</span>
+                        <span>Great deals nearby that you walk right past</span>
                     </div>
                     <div class="problem-after">
                         <span class="problem-check">✓</span>
-                        <span>Matched to YOUR actual spending categories</span>
+                        <span>Location-aware alerts when deals are close</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- ═══════════════════════════════════════════
+         APP SCREENSHOTS — Visual Feature Tour
+    ═══════════════════════════════════════════ -->
+    <section class="section" id="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The App</span>
+                <h2 class="section-title">See it<br><span class="gradient-text">in action.</span></h2>
+                <p style="color: rgba(255,255,255,0.5); max-width: 600px; margin: 16px auto 0;">A premium dark-themed experience with gold accents — designed for quick deal discovery.</p>
+            </div>
+            <div class="pb-screenshot-grid">
+                <div class="pb-screenshot-card reveal">
+                    <img src="images/pb-home-feed.png" alt="PromoBuddy Home Feed">
+                    <div class="card-label">Home Deal Feed</div>
+                    <div class="card-desc">Browse all active promotions in a scrollable feed. Filter by category — dining, grocery, shopping, entertainment — or see everything at once.</div>
+                </div>
+                <div class="pb-screenshot-card reveal">
+                    <img src="images/pb-flash-carousel.png" alt="Flash Deals Carousel">
+                    <div class="card-label">Flash Deals Carousel</div>
+                    <div class="card-desc">Eye-catching rotating carousel of the hottest deals. Swipe through featured promotions with rich banner images created by merchants.</div>
+                </div>
+                <div class="pb-screenshot-card reveal">
+                    <img src="images/pb-sms-detection.png" alt="SMS Deal Detection">
+                    <div class="card-label">SMS Deal Detection</div>
+                    <div class="card-desc">Automatic promo SMS detection via Android Notification Listener. Parses merchant, discount, validity, and category from incoming messages — zero effort required.</div>
+                </div>
+                <div class="pb-screenshot-card reveal">
+                    <img src="images/pb-nearby-deals.png" alt="Nearby Deals Map">
+                    <div class="card-label">Nearby Deals</div>
+                    <div class="card-desc">Location-aware deal discovery shows promotions from merchants near you. Interactive map view with distance indicators and deal previews.</div>
+                </div>
+                <div class="pb-screenshot-card reveal">
+                    <img src="images/pb-deal-detail.png" alt="Deal Detail View">
+                    <div class="card-label">Rich Deal Cards</div>
+                    <div class="card-desc">Each deal shows merchant info, discount details, validity dates, terms and conditions, and a banner image — everything you need at a glance.</div>
+                </div>
+                <div class="pb-screenshot-card reveal">
+                    <img src="images/pb-categories.png" alt="Category Filtering">
+                    <div class="card-label">Category Filtering</div>
+                    <div class="card-desc">Filter deals by your favorite categories. Card-based filtering lets you see promotions for specific payment cards or deal types.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FEATURES SECTION — Core App Features
+    ═══════════════════════════════════════════ -->
     <section class="section features-section" id="features">
         <div class="container">
             <div class="section-header">
@@ -175,123 +352,74 @@
                 <h2 class="section-title">Saving money,<br><span class="gradient-text">on autopilot.</span></h2>
             </div>
 
-            <!-- Feature 1: Auto Promo Detection -->
+            <!-- Feature 1: SMS Promo Detection -->
             <div class="feature-row feature-deals reveal">
                 <div class="feature-text">
                     <div class="feature-number">01</div>
-                    <h3>Automatic Promotion Detection</h3>
+                    <h3>Intelligent SMS Deal Detection</h3>
                     <p>
-                        PromoBuddy reads your bank SMS, email notifications, and store alerts to automatically
-                        extract promotions, discounts, and rewards. No manual clipping, no scrolling through
-                        messages — every deal is captured and organized for you.
+                        PromoBuddy uses Android's Notification Listener to automatically intercept and parse
+                        promotional SMS messages. It extracts the merchant name, discount amount, validity period,
+                        and category — then presents it as a clean deal card. OTP messages, bank transactions,
+                        and non-promotional texts are intelligently filtered out.
                     </p>
                     <div class="feature-tags">
-                        <span>SMS Parsing</span>
-                        <span>Auto-Extract</span>
-                        <span>Zero Effort</span>
+                        <span>Auto-Detect SMS</span>
+                        <span>Smart Parsing</span>
+                        <span>Privacy-First</span>
                     </div>
                 </div>
                 <div class="feature-visual">
                     <div class="feature-card-stack">
                         <div class="f-card">
                             <div class="f-card-row">
-                                <span class="f-icon">🏦</span>
+                                <span class="f-icon">🍕</span>
                                 <div>
-                                    <strong>HNB Visa Promo</strong>
-                                    <small>20% off at Keells — valid till May 15</small>
+                                    <strong>Domino's</strong>
+                                    <small>Rs. 1,000 OFF Big Big Pizzas — valid this week</small>
                                 </div>
                                 <span class="f-badge f-real">Active</span>
                             </div>
                         </div>
                         <div class="f-card">
                             <div class="f-card-row">
-                                <span class="f-icon">🛍️</span>
+                                <span class="f-icon">🛒</span>
                                 <div>
-                                    <strong>Odel Rewards</strong>
-                                    <small>Rs. 500 voucher — 2,000 points earned</small>
+                                    <strong>Supermarket Promo</strong>
+                                    <small>Buy 1 Get 1 FREE on selected items</small>
                                 </div>
-                                <span class="f-badge f-real">Reward</span>
+                                <span class="f-badge f-real">BOGO</span>
                             </div>
                         </div>
                         <div class="f-card">
                             <div class="f-card-row">
-                                <span class="f-icon">📧</span>
+                                <span class="f-icon">🍗</span>
                                 <div>
-                                    <strong>Daraz Flash Sale</strong>
-                                    <small>Up to 50% off electronics — 6 hours left</small>
+                                    <strong>KFC</strong>
+                                    <small>Ultimate Burger Combo — just Rs.2,990</small>
                                 </div>
-                                <span class="f-badge f-filtered">Expiring</span>
+                                <span class="f-badge f-filtered">Combo</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Feature 2: Smart Matching -->
+            <!-- Feature 2: Nearby Deals -->
             <div class="feature-row feature-row-reverse feature-savings reveal">
                 <div class="feature-text">
                     <div class="feature-number">02</div>
-                    <h3>Spend-Matched Deals</h3>
+                    <h3>Nearby Deals with Map View</h3>
                     <p>
-                        PromoBuddy connects to your BudgetBuddy spending data and only surfaces deals
-                        that match your actual habits. If you spend on groceries every week, you'll see
-                        grocery promos first. If you dine out often, restaurant deals get priority.
-                        No noise — only relevant savings.
+                        See active promotions from merchants around you on an interactive map.
+                        PromoBuddy surfaces deals from stores within walking or driving distance,
+                        complete with distance indicators and deal previews. Push notifications alert
+                        you when you're near a merchant with a hot deal.
                     </p>
                     <div class="feature-tags">
-                        <span>AI Matching</span>
-                        <span>Personalized</span>
-                        <span>BudgetBuddy Sync</span>
-                    </div>
-                </div>
-                <div class="feature-visual">
-                    <div class="goals-mockup">
-                        <div class="goal-card-mock">
-                            <div class="goal-header">
-                                <span class="goal-emoji">🛒</span>
-                                <div>
-                                    <strong>Groceries — 3 active deals</strong>
-                                    <small>You spend Rs. 12,000/mo here</small>
-                                </div>
-                            </div>
-                            <div class="goal-progress">
-                                <div class="goal-bar"><div class="goal-fill" style="--gw: 85%"></div></div>
-                                <span>85% match</span>
-                            </div>
-                            <small class="goal-deadline">💡 Potential savings: Rs. 1,800/mo</small>
-                        </div>
-                        <div class="goal-card-mock">
-                            <div class="goal-header">
-                                <span class="goal-emoji">🍔</span>
-                                <div>
-                                    <strong>Dining — 2 active deals</strong>
-                                    <small>You spend Rs. 8,500/mo here</small>
-                                </div>
-                            </div>
-                            <div class="goal-progress">
-                                <div class="goal-bar"><div class="goal-fill goal-fill-high" style="--gw: 70%"></div></div>
-                                <span>70% match</span>
-                            </div>
-                            <small class="goal-deadline">💡 Potential savings: Rs. 1,200/mo</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 3: Nearby Deals -->
-            <div class="feature-row feature-deals reveal">
-                <div class="feature-text">
-                    <div class="feature-number">03</div>
-                    <h3>Location-Aware Deals</h3>
-                    <p>
-                        Walking past a store with an active promo? PromoBuddy lets you know.
-                        Using optional location data, the app can surface deals from nearby merchants
-                        you already shop at — right when you're in range to use them.
-                    </p>
-                    <div class="feature-tags">
-                        <span>Nearby Alerts</span>
-                        <span>Geo-Matched</span>
-                        <span>Optional Location</span>
+                        <span>Map View</span>
+                        <span>Push Alerts</span>
+                        <span>Distance Sorting</span>
                     </div>
                 </div>
                 <div class="feature-visual">
@@ -299,45 +427,148 @@
                         <div class="bill-item upcoming">
                             <div class="bill-dot"></div>
                             <div class="bill-info">
-                                <strong>Keells — 200m away</strong>
-                                <small>20% off with your HNB Visa</small>
+                                <strong>Pizza Hut — 200m away</strong>
+                                <small>15% OFF on your next order</small>
                             </div>
-                            <span class="bill-amount" style="color: var(--accent-2);">Save Rs.800</span>
+                            <span class="bill-amount" style="color: var(--accent-2);">15% OFF</span>
                         </div>
                         <div class="bill-item today">
                             <div class="bill-dot"></div>
                             <div class="bill-info">
-                                <strong>Pizza Hut — 500m away</strong>
-                                <small>Buy 1 Get 1 — ends today</small>
+                                <strong>Cafe Noir — 450m away</strong>
+                                <small>Buy 1 Get 1 Free — ends today</small>
                             </div>
                             <span class="bill-amount" style="color: var(--color-warning);">BOGO</span>
                         </div>
                         <div class="bill-item upcoming">
                             <div class="bill-dot"></div>
                             <div class="bill-info">
-                                <strong>Lanka IOC — 1.2km</strong>
-                                <small>5x reward points until Friday</small>
+                                <strong>Fashion Store — 800m</strong>
+                                <small>Flat 30% off all items this weekend</small>
                             </div>
-                            <span class="bill-amount" style="color: var(--accent-2);">5x Points</span>
+                            <span class="bill-amount" style="color: var(--accent-2);">30% OFF</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Feature 4: Expiry Tracking -->
+            <!-- Feature 3: Quick Deals & Flash Promotions -->
+            <div class="feature-row feature-deals reveal">
+                <div class="feature-text">
+                    <div class="feature-number">03</div>
+                    <h3>Quick Deals & Flash Promotions</h3>
+                    <p>
+                        Merchants can push time-sensitive Quick Deals directly to the app — flash sales,
+                        happy hour specials, or limited-stock offers that appear instantly in a stunning
+                        carousel at the top of the feed. Users get real-time push notifications for deals
+                        that match their interests and location.
+                    </p>
+                    <div class="feature-tags">
+                        <span>Quick Deals</span>
+                        <span>Flash Sales</span>
+                        <span>Real-Time Push</span>
+                    </div>
+                </div>
+                <div class="feature-visual">
+                    <div class="feature-card-stack">
+                        <div class="f-card">
+                            <div class="f-card-row">
+                                <span class="f-icon">⚡</span>
+                                <div>
+                                    <strong>Flash Deal — 2 Hours Left</strong>
+                                    <small>50% off all beverages at City Cafe</small>
+                                </div>
+                                <span class="f-badge f-filtered">Flash</span>
+                            </div>
+                        </div>
+                        <div class="f-card">
+                            <div class="f-card-row">
+                                <span class="f-icon">🔥</span>
+                                <div>
+                                    <strong>Happy Hour Special</strong>
+                                    <small>Buy 2 Get 1 — until 7pm today only</small>
+                                </div>
+                                <span class="f-badge f-real">Live Now</span>
+                            </div>
+                        </div>
+                        <div class="f-card">
+                            <div class="f-card-row">
+                                <span class="f-icon">🎯</span>
+                                <div>
+                                    <strong>Weekend Blowout</strong>
+                                    <small>Up to 40% off — limited stock</small>
+                                </div>
+                                <span class="f-badge f-real">Quick Deal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4: Category & Card Filtering -->
             <div class="feature-row feature-row-reverse feature-deals reveal">
                 <div class="feature-text">
                     <div class="feature-number">04</div>
-                    <h3>Expiry Countdown & Reminders</h3>
+                    <h3>Smart Category & Card Filtering</h3>
                     <p>
-                        Every deal has a deadline. PromoBuddy tracks them all and sends smart reminders
-                        before your best offers expire. Deals are sorted by urgency — expiring soon at the
-                        top, so you never miss a time-sensitive saving.
+                        Browse deals by category — Dining, Grocery, Shopping, Entertainment, Travel, and more.
+                        Filter by your payment cards to see promotions linked to specific card types.
+                        The home feed adapts to show what's most relevant to your interests, with horizontal
+                        filter chips for instant category switching.
                     </p>
                     <div class="feature-tags">
-                        <span>Countdown Timers</span>
-                        <span>Smart Reminders</span>
-                        <span>Priority Sort</span>
+                        <span>Category Chips</span>
+                        <span>Card Filters</span>
+                        <span>Smart Feed</span>
+                    </div>
+                </div>
+                <div class="feature-visual">
+                    <div class="goals-mockup">
+                        <div class="goal-card-mock">
+                            <div class="goal-header">
+                                <span class="goal-emoji">🍔</span>
+                                <div>
+                                    <strong>Dining — 8 active deals</strong>
+                                    <small>Restaurants, cafes, fast food</small>
+                                </div>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="goal-bar"><div class="goal-fill" style="--gw: 90%"></div></div>
+                                <span>Most deals</span>
+                            </div>
+                        </div>
+                        <div class="goal-card-mock">
+                            <div class="goal-header">
+                                <span class="goal-emoji">🛒</span>
+                                <div>
+                                    <strong>Grocery — 5 active deals</strong>
+                                    <small>Supermarkets, fresh produce</small>
+                                </div>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="goal-bar"><div class="goal-fill goal-fill-high" style="--gw: 60%"></div></div>
+                                <span>Trending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 5: Push Notifications -->
+            <div class="feature-row feature-savings reveal">
+                <div class="feature-text">
+                    <div class="feature-number">05</div>
+                    <h3>Smart Push Notifications</h3>
+                    <p>
+                        Never miss a deal that matters. PromoBuddy sends intelligent push notifications
+                        for new promotions, expiring deals, and nearby offers. Notifications are powered by
+                        Firebase Cloud Messaging with topic-based subscriptions — you only get alerts
+                        for categories and areas you care about.
+                    </p>
+                    <div class="feature-tags">
+                        <span>Push Alerts</span>
+                        <span>Topic Subscriptions</span>
+                        <span>Expiry Reminders</span>
                     </div>
                 </div>
                 <div class="feature-visual">
@@ -345,76 +576,26 @@
                         <div class="bill-item overdue">
                             <div class="bill-dot"></div>
                             <div class="bill-info">
-                                <strong>Starbucks BOGO</strong>
-                                <small>Expires in 3 hours!</small>
+                                <strong>Deal Expiring Soon!</strong>
+                                <small>Pizza BOGO ends in 3 hours</small>
                             </div>
                             <span class="bill-amount">Use Now →</span>
                         </div>
                         <div class="bill-item today">
                             <div class="bill-dot"></div>
                             <div class="bill-info">
-                                <strong>Dialog 2GB Bonus</strong>
-                                <small>Ends today at midnight</small>
+                                <strong>New Quick Deal Near You</strong>
+                                <small>30% off at a store 300m away</small>
                             </div>
-                            <span class="bill-amount">Today</span>
+                            <span class="bill-amount">View →</span>
                         </div>
                         <div class="bill-item upcoming">
                             <div class="bill-dot"></div>
                             <div class="bill-info">
-                                <strong>HNB 20% at Keells</strong>
-                                <small>3 days remaining</small>
+                                <strong>Weekend Flash Sale</strong>
+                                <small>5 new deals matched your interests</small>
                             </div>
-                            <span class="bill-amount">3 days</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 5: Savings Tracker -->
-            <div class="feature-row feature-savings reveal">
-                <div class="feature-text">
-                    <div class="feature-number">05</div>
-                    <h3>Total Savings Dashboard</h3>
-                    <p>
-                        See exactly how much you've saved using PromoBuddy deals. Monthly savings reports,
-                        top categories, and a running total that grows every time you redeem an offer.
-                        It's not just about finding deals — it's about knowing the impact.
-                    </p>
-                    <div class="feature-tags">
-                        <span>Savings Total</span>
-                        <span>Monthly Reports</span>
-                        <span>Category Breakdown</span>
-                    </div>
-                </div>
-                <div class="feature-visual">
-                    <div class="analytics-mockup">
-                        <div class="analytics-header-mock">
-                            <div>
-                                <span class="a-stat-val a-down">Rs. 12,400</span>
-                                <span class="a-stat-label">Total Saved This Month</span>
-                            </div>
-                            <div>
-                                <span class="a-stat-val">47</span>
-                                <span class="a-stat-label">Deals Redeemed</span>
-                            </div>
-                        </div>
-                        <div class="budget-meters">
-                            <div class="meter meter-ok">
-                                <div class="meter-fill" style="--fill: 75%;"></div>
-                                <span><b>🛒 Groceries</b> Rs. 4,200 saved</span>
-                            </div>
-                            <div class="meter meter-ok">
-                                <div class="meter-fill" style="--fill: 55%;"></div>
-                                <span><b>🍔 Dining</b> Rs. 3,100 saved</span>
-                            </div>
-                            <div class="meter meter-ok">
-                                <div class="meter-fill" style="--fill: 40%;"></div>
-                                <span><b>⛽ Fuel</b> Rs. 2,800 saved</span>
-                            </div>
-                            <div class="meter meter-ok">
-                                <div class="meter-fill" style="--fill: 30%;"></div>
-                                <span><b>🛍️ Shopping</b> Rs. 2,300 saved</span>
-                            </div>
+                            <span class="bill-amount">Browse →</span>
                         </div>
                     </div>
                 </div>
@@ -422,118 +603,174 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
+    <!-- ═══════════════════════════════════════════
+         MERCHANT PORTAL SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="section pb-portal-section" id="merchant-portal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">For Merchants</span>
+                <h2 class="section-title">The Merchant Portal —<br><span class="gradient-text">Your promotion command center.</span></h2>
+                <p style="color: rgba(255,255,255,0.5); max-width: 650px; margin: 16px auto 0;">
+                    A powerful web-based dashboard where merchants create, manage, and track promotions
+                    that reach thousands of PromoBuddy users instantly.
+                </p>
+            </div>
+
+            <div class="pb-portal-grid reveal">
+                <div>
+                    <img src="images/pb-portal-dashboard.png" alt="Merchant Portal Dashboard" class="pb-portal-img">
+                </div>
+                <div>
+                    <h3 style="color: #CAA55E; font-size: 1.5rem; margin-bottom: 8px;">Create & Manage Campaigns</h3>
+                    <p style="color: rgba(255,255,255,0.6); line-height: 1.7;">
+                        The Merchant Portal gives businesses complete control over their promotions.
+                        Create rich campaigns with AI-generated banner images, set validity periods,
+                        target specific categories, and track engagement — all from a clean, modern dashboard.
+                    </p>
+                    <ul class="pb-portal-features">
+                        <li>
+                            <span class="pf-icon">🤖</span>
+                            <div><strong>AI-Generated Banner Images</strong> — Describe your promotion and our LLM creates stunning, professional banner artwork instantly. No designer needed.</div>
+                        </li>
+                        <li>
+                            <span class="pf-icon">⚡</span>
+                            <div><strong>Quick Promotions</strong> — Create and publish flash deals in seconds. Set duration, discount, and push it live to the PromoBuddy app immediately.</div>
+                        </li>
+                        <li>
+                            <span class="pf-icon">📊</span>
+                            <div><strong>Campaign Analytics</strong> — Track views, engagement, and redemptions for every promotion. See which deals perform best.</div>
+                        </li>
+                        <li>
+                            <span class="pf-icon">📱</span>
+                            <div><strong>SMS Campaigns</strong> — Reach customers directly via SMS with promotional messages. Manage campaign templates and customer groups.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Portal Feature Cards -->
+            <div class="pb-dual-section reveal">
+                <div class="pb-dual-card">
+                    <span class="dual-emoji">🎨</span>
+                    <h4>AI Image Generation</h4>
+                    <p>
+                        Type a description of your promotion and watch AI create eye-catching banner images
+                        in seconds. Choose from multiple generated options, or upload your own.
+                        Every promotion gets a professional look without the cost of a design team.
+                    </p>
+                    <img src="images/pb-portal-ai-image.png" alt="AI Banner Generation">
+                </div>
+                <div class="pb-dual-card">
+                    <span class="dual-emoji">⚡</span>
+                    <h4>Quick Deal Creator</h4>
+                    <p>
+                        Need to push a flash sale? The Quick Deal creator lets you set up a time-limited
+                        promotion with just a title, discount, and duration. It goes live instantly in the
+                        app's flash carousel and triggers push notifications to nearby users.
+                    </p>
+                    <img src="images/pb-portal-quick-deal.png" alt="Quick Deal Creator">
+                </div>
+            </div>
+
+            <div class="pb-dual-section reveal" style="margin-top: 24px;">
+                <div class="pb-dual-card">
+                    <span class="dual-emoji">👥</span>
+                    <h4>Customer Group Management</h4>
+                    <p>
+                        Organize your customer base into targeted groups. Send specific promotions to
+                        loyal customers, first-time visitors, or high-spenders. Define groups based on
+                        purchase history and engagement patterns.
+                    </p>
+                    <img src="images/pb-portal-customers.png" alt="Customer Groups">
+                </div>
+                <div class="pb-dual-card">
+                    <span class="dual-emoji">✅</span>
+                    <h4>Auto-Approval & Moderation</h4>
+                    <p>
+                        Set up auto-approval rules for promotions that meet your criteria. Admins can
+                        review, approve, or reject submissions. Keep your platform quality high with
+                        built-in moderation workflows.
+                    </p>
+                    <img src="images/pb-portal-approval.png" alt="Auto Approval Settings">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         HOW IT WORKS
+    ═══════════════════════════════════════════ -->
     <section class="section vision-section" id="how-it-works">
         <div class="container">
             <div class="vision-content reveal">
                 <span class="section-tag">How It Works</span>
                 <h2 class="section-title">
-                    Three steps to<br>
-                    <span class="gradient-text">never miss a deal.</span>
+                    Two platforms,<br>
+                    <span class="gradient-text">one ecosystem.</span>
                 </h2>
                 <div class="vision-pillars">
                     <div class="pillar">
                         <div class="pillar-number">01</div>
-                        <h4>Install & Connect</h4>
-                        <p>Download PromoBuddy and grant SMS read permission. Optionally link your BudgetBuddy account for spend-matched deals.</p>
+                        <h4>Merchants Create</h4>
+                        <p>Merchants use the web portal to create promotions with AI-generated banners, set validity periods, and target categories. Quick deals go live instantly.</p>
                     </div>
                     <div class="pillar">
                         <div class="pillar-number">02</div>
-                        <h4>Deals Auto-Appear</h4>
-                        <p>PromoBuddy scans your notifications and surfaces relevant promotions, organized by category, location, and expiry.</p>
+                        <h4>App Discovers</h4>
+                        <p>PromoBuddy aggregates promotions, detects SMS deals automatically, and surfaces nearby offers — all presented in a beautiful, filterable deal feed.</p>
                     </div>
                     <div class="pillar">
                         <div class="pillar-number">03</div>
-                        <h4>Save & Track</h4>
-                        <p>Redeem deals and watch your savings grow. Monthly reports show exactly how much PromoBuddy has saved you.</p>
+                        <h4>Users Save</h4>
+                        <p>Consumers browse, filter, and redeem deals effortlessly. Push notifications ensure you never miss a deal that matches your interests and location.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BudgetBuddy Sync Section -->
-    <section class="section">
-        <div class="container">
-            <div class="product-featured reveal">
-                <div class="product-featured-content">
-                    <div class="product-badge">🔗 Better Together</div>
-                    <h3 class="product-name" style="font-size: 2rem;">PromoBuddy + BudgetBuddy</h3>
-                    <p class="product-tagline">The Complete Money Ecosystem</p>
-                    <p class="product-desc">
-                        PromoBuddy and BudgetBuddy share the same on-device AI core. When linked, PromoBuddy
-                        uses your actual spending patterns to prioritize deals that save you the most money.
-                        Track spending with BudgetBuddy, save money with PromoBuddy — one seamless experience.
-                    </p>
-                    <div class="product-features-mini">
-                        <span class="mini-feature">📊 Shared Spending Data</span>
-                        <span class="mini-feature">🤖 Same AI Core</span>
-                        <span class="mini-feature">🔒 On-Device Only</span>
-                        <span class="mini-feature">⚡ Instant Sync</span>
-                    </div>
-                    <a href="budgetbuddy.html" class="btn btn-ghost">
-                        <span>Learn about BudgetBuddy</span>
-                    </a>
-                </div>
-                <div class="product-featured-visual">
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <div class="mock-header">
-                                <span class="mock-greeting">This Month 📊</span>
-                                <span class="mock-balance">Rs. 12,400 Saved</span>
-                            </div>
-                            <div class="mock-chart">
-                                <div class="chart-bar" style="--height: 80%"><span>Grocery</span></div>
-                                <div class="chart-bar" style="--height: 55%"><span>Dining</span></div>
-                                <div class="chart-bar" style="--height: 45%"><span>Fuel</span></div>
-                                <div class="chart-bar" style="--height: 35%"><span>Fashion</span></div>
-                                <div class="chart-bar" style="--height: 25%"><span>Other</span></div>
-                            </div>
-                            <div class="mock-ai-chip">
-                                <span>💰</span> You saved 18% more than last month!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- All Features Grid -->
+    <!-- ═══════════════════════════════════════════
+         ALL FEATURES GRID
+    ═══════════════════════════════════════════ -->
     <section class="section allfeatures-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Complete Toolkit</span>
+                <span class="section-tag">Complete Platform</span>
                 <h2 class="section-title">Everything<br><span class="gradient-text">PromoBuddy offers.</span></h2>
             </div>
             <div class="allfeatures-grid">
-                <div class="af-item reveal"><span>🏷️</span> Auto Promo Detection</div>
-                <div class="af-item reveal"><span>📱</span> SMS & Email Parsing</div>
-                <div class="af-item reveal"><span>🤖</span> AI-Matched Deals</div>
-                <div class="af-item reveal"><span>📍</span> Nearby Offers</div>
-                <div class="af-item reveal"><span>⏰</span> Expiry Reminders</div>
-                <div class="af-item reveal"><span>💳</span> Card-Linked Promos</div>
-                <div class="af-item reveal"><span>📊</span> Savings Dashboard</div>
-                <div class="af-item reveal"><span>🛒</span> Category Matching</div>
-                <div class="af-item reveal"><span>🔗</span> BudgetBuddy Sync</div>
-                <div class="af-item reveal"><span>🔔</span> Smart Notifications</div>
-                <div class="af-item reveal"><span>🏦</span> Multi-Bank Support</div>
-                <div class="af-item reveal"><span>🌍</span> Multi-Currency</div>
-                <div class="af-item reveal"><span>🔐</span> On-Device Privacy</div>
-                <div class="af-item reveal"><span>⭐</span> Loyalty Points</div>
-                <div class="af-item reveal"><span>📈</span> Monthly Reports</div>
-                <div class="af-item reveal"><span>🎯</span> Personalized Feed</div>
+                <!-- Consumer App Features -->
+                <div class="af-item reveal"><span>📱</span> SMS Deal Auto-Detection</div>
+                <div class="af-item reveal"><span>📍</span> Nearby Deals with Map</div>
+                <div class="af-item reveal"><span>⚡</span> Quick Deals & Flash Sales</div>
+                <div class="af-item reveal"><span>🎠</span> Flash Deal Carousel</div>
+                <div class="af-item reveal"><span>🏷️</span> Category Filtering</div>
+                <div class="af-item reveal"><span>💳</span> Card-Based Promotions</div>
+                <div class="af-item reveal"><span>🔔</span> Push Notifications</div>
+                <div class="af-item reveal"><span>🎯</span> Personalized Deal Feed</div>
+                <!-- Merchant Portal Features -->
+                <div class="af-item reveal"><span>🤖</span> AI Banner Image Generation</div>
+                <div class="af-item reveal"><span>📊</span> Campaign Analytics</div>
+                <div class="af-item reveal"><span>✍️</span> Promotion Creator</div>
+                <div class="af-item reveal"><span>👥</span> Customer Groups</div>
+                <div class="af-item reveal"><span>📨</span> SMS Campaign Manager</div>
+                <div class="af-item reveal"><span>✅</span> Auto-Approval Rules</div>
+                <div class="af-item reveal"><span>🖼️</span> Rich Banner Design</div>
+                <div class="af-item reveal"><span>🔐</span> Merchant Dashboard</div>
             </div>
         </div>
     </section>
 
-    <!-- Download / Early Access Section -->
+    <!-- ═══════════════════════════════════════════
+         DOWNLOAD SECTION
+    ═══════════════════════════════════════════ -->
     <section class="section download-section" id="download">
         <div class="container">
             <div class="download-card reveal">
                 <div class="cta-glow"></div>
-                <h2>Start saving<br><span class="gradient-text">without trying.</span></h2>
-                <p>Get early access to PromoBuddy and be the first to experience AI-powered deal discovery.</p>
+                <h2>Start discovering<br><span class="gradient-text">deals that matter.</span></h2>
+                <p>Download PromoBuddy and never miss a promotion again. Merchants — reach thousands of engaged deal-seekers through our portal.</p>
                 <div class="download-buttons">
                     <a href="#" class="store-btn">
                         <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
@@ -550,12 +787,14 @@
                         </div>
                     </a>
                 </div>
-                <p class="download-note">Launching soon. Free to download.</p>
+                <p class="download-note">Free to download. Merchant Portal available at portal.promobuddy.lk</p>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- ═══════════════════════════════════════════
+         FAQ SECTION
+    ═══════════════════════════════════════════ -->
     <section class="section faq-section">
         <div class="container">
             <div class="section-header">
@@ -569,16 +808,43 @@
                         <span class="faq-toggle">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>PromoBuddy is an AI-powered deal discovery app that automatically detects promotions from your bank SMS, store notifications, and email — then matches them to your spending habits so you save money effortlessly.</p>
+                        <p>PromoBuddy is a complete deal discovery platform — a mobile app for consumers that auto-detects promotions from SMS messages, shows nearby deals on a map, and curates a personalized deal feed. It also includes a Merchant Portal where businesses create and manage AI-powered promotional campaigns.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
                     <button class="faq-question">
-                        <span>Do I need BudgetBuddy to use PromoBuddy?</span>
+                        <span>How does SMS deal detection work?</span>
                         <span class="faq-toggle">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>No! PromoBuddy works independently. However, linking it with BudgetBuddy unlocks spend-matched deals — promotions prioritized based on your actual spending patterns for maximum savings.</p>
+                        <p>PromoBuddy uses Android's Notification Listener Service to monitor incoming SMS notifications. It intelligently filters out OTP codes, bank transactions, and non-promotional messages — only parsing actual promotional SMS into clean deal cards with merchant, discount, and validity information extracted automatically.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>What can merchants do with the portal?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The Merchant Portal lets businesses create promotions with AI-generated banner images, launch Quick Deals that go live instantly, manage SMS campaigns, organize customer groups, track campaign analytics, and set up auto-approval rules. Everything needed to run effective promotional campaigns from one dashboard.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>How does AI image generation work?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>When creating a promotion, merchants can describe the visual they want — for example, "a vibrant pizza promotion with summer colors" — and our LLM generates professional banner images in seconds. Merchants can choose from multiple generated options or upload their own artwork.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>Is PromoBuddy free?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The consumer app is completely free to download and use. The Merchant Portal offers different tiers for businesses based on campaign volume and feature access.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -587,25 +853,7 @@
                         <span class="faq-toggle">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Yes. Like BudgetBuddy, PromoBuddy processes everything on your device. Your promotion data, spending habits, and location are never uploaded to any server. We don't sell or share your data.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        <span>Does it require location access?</span>
-                        <span class="faq-toggle">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Location access is completely optional. Without it, you still get all SMS-based and email-based deal detection. With it, you additionally get nearby store alerts when you're close to a merchant with an active offer.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question">
-                        <span>When is PromoBuddy launching?</span>
-                        <span class="faq-toggle">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>PromoBuddy is currently in development. Sign up for early access to be notified when it's available on both iOS and Android.</p>
+                        <p>Yes. SMS processing happens entirely on your device — promotional messages are parsed locally and never sent to any server. Location data is optional and only used for nearby deal matching. We don't sell or share your personal data.</p>
                     </div>
                 </div>
             </div>
@@ -629,6 +877,12 @@
                     <a href="budgetbuddy.html">BudgetBuddy</a>
                     <a href="promobuddy.html">PromoBuddy</a>
                     <a href="#">InvestIQ (Soon)</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="#features">Consumer App</a>
+                    <a href="#merchant-portal">Merchant Portal</a>
+                    <a href="#download">Download</a>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
